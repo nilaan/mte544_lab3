@@ -156,7 +156,7 @@ void plotPoints()
 void plotLines()
 {
 	geometry_msgs::Point p;
-	double slope;
+	int count = 1;
 	points.header.frame_id = "/map";
 	points.type = visualization_msgs::Marker::LINE_STRIP;
 	points.action = visualization_msgs::Marker::ADD;
@@ -172,7 +172,7 @@ void plotLines()
 		{
 			if (connectedEdges[i*numNodes+j] == 1)
 			{
-				points.id = (i+1)*j;
+				points.id = count++;
 				points.points.clear();
 				p.x = nodesX[i];
 				p.y = nodesY[i];
