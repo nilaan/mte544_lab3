@@ -170,8 +170,9 @@ void plotLines()
 	{
 		for(int j = 0; j < numNodes; j++)
 		{
-			if (connectedEdges[i*mapWidth+j] == 1)
+			if (connectedEdges[i*numNodes+j] == 1)
 			{
+				points.id = (i+1)*j;
 				points.points.clear();
 				p.x = nodesX[i];
 				p.y = nodesY[i];
@@ -318,7 +319,7 @@ void connectEdges()
 	double dists[numNodes];
 	int ind[numNodes];
 	connectedEdges = new uint8_t[numNodes*numNodes];
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < numNodes; i++)
 	{
 		for (j = 0; j < numNodes; j++)
 		{
@@ -332,7 +333,7 @@ void connectEdges()
 			ROS_INFO("%d %d", i, ind[j]);
 			if(!checkCollision(i, ind[j]))
 			{
-				connectedEdges[i*mapWidth+ind[j]] = 1;
+				connectedEdges[i*numNodes+ind[j]] = 1;
 				//connectedEdges[ind[j]*mapHeight+i] = 1;
 			}
 		}
